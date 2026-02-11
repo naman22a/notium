@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notium/screens/about_screen.dart';
 import 'package:notium/screens/home_screen.dart';
 import 'package:notium/screens/settings_screen.dart';
 
@@ -19,6 +20,14 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About Us'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => AboutScreen()));
               },
             ),
             ListTile(

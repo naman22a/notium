@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: MyAppBar(),
       body: Center(
         child: Text(
           'Notium',

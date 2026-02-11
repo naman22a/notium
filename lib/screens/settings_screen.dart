@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 
 enum FontSize { small, medium, large }
@@ -22,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
-      appBar: AppBar(),
+      appBar: MyAppBar(),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
