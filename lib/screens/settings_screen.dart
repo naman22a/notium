@@ -9,8 +9,6 @@ enum AutoLock { thirtySeconds, oneMinute, fiveMinutes }
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
-  static final String id = '/settings';
-
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }

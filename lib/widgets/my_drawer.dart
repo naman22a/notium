@@ -17,14 +17,16 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
               },
             ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
               onTap: () {
-                Navigator.pushNamed(context, SettingsScreen.id);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => SettingsScreen()));
               },
             ),
           ],
