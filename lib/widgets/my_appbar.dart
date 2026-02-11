@@ -6,6 +6,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: Text('Notium'),
+      centerTitle: true,
       backgroundColor: Color.fromARGB(255, 215, 215, 215),
     );
   }
