@@ -60,21 +60,26 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.0),
-            Column(
-              children: features.map((feature) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.check_circle_outline, size: 18),
-                        SizedBox(width: 10.0),
-                        Text(feature),
-                      ],
-                    ),
-                    SizedBox(height: 5.0),
-                  ],
-                );
-              }).toList(),
+            Container(
+              height: 150.0,
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: features.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.check_circle_outline, size: 18),
+                          SizedBox(width: 10.0),
+                          Text(features[index]),
+                        ],
+                      ),
+                      SizedBox(height: 5.0),
+                    ],
+                  );
+                },
+              ),
             ),
             SizedBox(height: 20.0),
             Text(
