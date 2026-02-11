@@ -71,7 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     style: SegmentedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
                       selectedForegroundColor: Colors.white,
-                      selectedBackgroundColor: Colors.green,
+                      selectedBackgroundColor: primaryColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 6, vertical: 2),
                       visualDensity:
