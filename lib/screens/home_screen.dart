@@ -4,6 +4,8 @@ import 'package:notium/widgets/my_drawer.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static final String id = '/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
