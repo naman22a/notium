@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 
 class NoteEditingScreen extends StatefulWidget {
   const NoteEditingScreen({super.key});
@@ -9,7 +8,7 @@ class NoteEditingScreen extends StatefulWidget {
 }
 
 class _NoteEditingScreenState extends State<NoteEditingScreen> {
-  final QuillController _controller = QuillController.basic();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +16,9 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
       appBar: AppBar(),
       body: Column(
         children: [
-          QuillSimpleToolbar(
+          TextField(
             controller: _controller,
-            config: const QuillSimpleToolbarConfig(),
           ),
-          Expanded(
-            child: QuillEditor.basic(
-              controller: _controller,
-              config: const QuillEditorConfig(),
-            ),
-          )
         ],
       ),
     );
