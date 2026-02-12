@@ -16,11 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xFFF4F4F4),
       appBar: MyAppBar(),
       body: Center(
-        child: Text('Notium',
-            style: TextStyle(
-              fontSize: 50.0,
-              fontWeight: FontWeight.bold,
-            )),
+        child: Text(
+          'Notium',
+          style: TextStyle(
+            fontSize: 50.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
