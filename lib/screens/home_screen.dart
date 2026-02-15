@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
             child: Container(
-              color: Colors.grey.shade200,
+              color: note.color.withAlpha(90),
               margin: EdgeInsets.all(10.0),
               child: ListTile(
                 title: Column(

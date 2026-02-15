@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/widgets/color_picker.dart';
 
 class NoteEditingScreen extends StatefulWidget {
   const NoteEditingScreen({
@@ -30,39 +31,43 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Title'),
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Title'),
+              TextField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            SizedBox(height: 10.0),
-            Text('Content'),
-            TextField(
-              controller: _contentController,
-              maxLines: null,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
+              SizedBox(height: 10.0),
+              ColorPicker(),
+              SizedBox(height: 10.0),
+              Text('Content'),
+              TextField(
+                controller: _contentController,
+                maxLines: null,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            SizedBox(height: 10.0),
-            OutlinedButton(
-              style: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(primaryColor),
-                backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+              SizedBox(height: 10.0),
+              OutlinedButton(
+                style: ButtonStyle(
+                  foregroundColor: WidgetStatePropertyAll(primaryColor),
+                  backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Save'),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Save'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

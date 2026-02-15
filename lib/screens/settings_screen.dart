@@ -57,13 +57,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Accent Color'),
-                  // TODO: implement a color picker or use an external package
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
                   Text('Font Size'),
                   SizedBox(
                     width: 300.0,
