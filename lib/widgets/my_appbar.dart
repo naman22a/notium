@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notium/common/colors.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
@@ -8,7 +9,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text('Notium'),
       centerTitle: true,
-      backgroundColor: Color.fromARGB(255, 215, 215, 215),
+      foregroundColor: Colors.white,
+      backgroundColor: primaryColor,
     );
   }
 

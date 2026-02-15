@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notium/common/colors.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 import 'package:notium/models/note_model.dart';
 import 'package:notium/screens/note_editing_screen.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,42 +27,68 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
+  Future<void> _handleRefresh() async {
+    await Future.delayed(Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
       appBar: MyAppBar(),
-      body: ListView.builder(
-        itemCount: _notes.length,
-        itemBuilder: (context, index) {
-          final note = _notes[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (ctx) => NoteEditingScreen(
-                    title: note.title,
-                    content: note.content,
+      body: LiquidPullToRefresh(
+        onRefresh: _handleRefresh,
+        color: primaryColor,
+        showChildOpacityTransition: false,
+        child: ListView.builder(
+          itemCount: _notes.length,
+          itemBuilder: (context, index) {
+            final note = _notes[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (ctx) => NoteEditingScreen(
+                      title: note.title,
+                      content: note.content,
+                    ),
                   ),
-                ),
-              );
-            },
-            child: Container(
-              color: note.color.withAlpha(90),
-              margin: EdgeInsets.all(10.0),
-              child: ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(note.title),
-                    Text('${note.content.substring(0, 100)}...'),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: note.color.withAlpha(90),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      offset: Offset(0, -5.0),
+                      blurRadius: 10.0,
+                      spreadRadius: 10.0,
+                    ),
                   ],
                 ),
+                margin: EdgeInsets.all(10.0),
+                child: ListTile(
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        note.title,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text('${note.content.substring(0, 100)}...'),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
