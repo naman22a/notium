@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notium/screens/about_screen.dart';
 import 'package:notium/screens/home_screen.dart';
 import 'package:notium/screens/settings_screen.dart';
+import 'package:notium/screens/trash_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -18,6 +19,7 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(
                     context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
               },
@@ -26,14 +28,25 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.info),
               title: Text('About Us'),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (ctx) => AboutScreen()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.delete),
+              title: Text('Trash'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => TrashScreen()));
               },
             ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (ctx) => SettingsScreen()));
               },

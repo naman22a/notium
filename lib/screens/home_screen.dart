@@ -5,6 +5,7 @@ import 'package:notium/widgets/my_drawer.dart';
 import 'package:notium/models/note_model.dart';
 import 'package:notium/screens/note_editing_screen.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:notium/widgets/note_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,36 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: note.color.withAlpha(90),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      offset: Offset(0, -5.0),
-                      blurRadius: 10.0,
-                      spreadRadius: 10.0,
-                    ),
-                  ],
-                ),
-                margin: EdgeInsets.all(10.0),
-                child: ListTile(
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        note.title,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text('${note.content.substring(0, 100)}...'),
-                    ],
-                  ),
-                ),
-              ),
+              child: NoteCard(note: note),
             );
           },
         ),
