@@ -18,7 +18,9 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
-      appBar: MyAppBar(),
+      appBar: MyAppBar(
+        title: 'About Us',
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
         child: Column(

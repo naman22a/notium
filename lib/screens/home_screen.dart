@@ -29,17 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   Future<void> _handleRefresh() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4F4F4),
+      backgroundColor: Colors.deepPurpleAccent,
       appBar: MyAppBar(),
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
         color: primaryColor,
+        backgroundColor: Colors.deepPurpleAccent,
+        height: 50.0,
+        animSpeedFactor: 2,
         showChildOpacityTransition: false,
         child: ListView.builder(
           itemCount: _notes.length,
@@ -75,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
-        backgroundColor: Color(0xFF00B7B5),
+        backgroundColor: primaryColor,
         child: Icon(Icons.add, color: Colors.white),
       ),
     );

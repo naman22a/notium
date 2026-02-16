@@ -8,6 +8,6 @@ class NoteModel {
   NoteModel({
     required this.title,
     required this.content,
-    this.color = const Color(0xFF00B7B5),
+    this.color = Colors.white,
   });
 }
