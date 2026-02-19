@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/theme/theme.dart';
+import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
+import 'package:provider/provider.dart';
 
 enum FontSize { small, medium, large }
 
@@ -15,14 +18,13 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isDarkMode = false;
   FontSize fontSizeView = FontSize.medium;
   AutoLock? _autoLock = AutoLock.oneMinute;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4F4F4),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: MyAppBar(
         title: 'Settings',
       ),
@@ -48,11 +50,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Switch(
                       overlayColor: overlayColor,
                       trackColor: trackColor,
-                      value: isDarkMode,
+                      value: Provider.of<ThemeProvider>(context).isDarkMode,
                       onChanged: (bool value) {
-                        setState(() {
-                          isDarkMode = value;
-                        });
+                        Provider.of<ThemeProvider>(context, listen: false)
+                            .toggleTheme();
                       },
                     ),
                   ],
@@ -66,7 +67,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       width: 300.0,
                       child: SegmentedButton<FontSize>(
                         style: SegmentedButton.styleFrom(
-                          backgroundColor: Colors.grey[200],
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
                           selectedForegroundColor: Colors.white,
                           selectedBackgroundColor: primaryColor,
                           padding: const EdgeInsets.symmetric(

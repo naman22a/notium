@@ -17,7 +17,7 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4F4F4),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: MyAppBar(
         title: 'About Us',
       ),
