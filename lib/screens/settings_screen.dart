@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
-import 'package:notium/theme/theme.dart';
 import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
