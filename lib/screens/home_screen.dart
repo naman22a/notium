@@ -35,12 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      backgroundColor: Colors.grey.shade100,
       appBar: MyAppBar(),
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
         color: primaryColor,
-        backgroundColor: Colors.deepPurpleAccent,
         height: 50.0,
         animSpeedFactor: 2,
         showChildOpacityTransition: false,

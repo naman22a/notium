@@ -23,7 +23,7 @@ class TrashScreen extends StatelessWidget {
   ];
 
   Future<void> _handleRefresh() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
   }
 
   @override
@@ -35,6 +35,8 @@ class TrashScreen extends StatelessWidget {
       body: LiquidPullToRefresh(
         onRefresh: _handleRefresh,
         color: primaryColor,
+        height: 50.0,
+        animSpeedFactor: 2,
         showChildOpacityTransition: false,
         child: ListView.builder(
           itemCount: _notes.length,
