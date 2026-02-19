@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:notium/common/colors.dart';
+
+final TextTheme baseTextTheme = GoogleFonts.poppinsTextTheme();
 
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
@@ -7,6 +10,7 @@ ThemeData lightMode = ThemeData(
     surface: Colors.grey.shade200,
     primary: primaryColor,
   ),
+  textTheme: baseTextTheme,
 );
 
 ThemeData darkMode = ThemeData(
@@ -15,4 +19,5 @@ ThemeData darkMode = ThemeData(
     surface: Colors.grey.shade900,
     primary: primaryColor,
   ),
+  textTheme: baseTextTheme,
 );
