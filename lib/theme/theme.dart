@@ -7,6 +7,7 @@ final TextTheme baseTextTheme = GoogleFonts.poppinsTextTheme();
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
+    inverseSurface: Colors.grey.shade900,
     surface: Colors.grey.shade200,
     primary: primaryColor,
   ),
@@ -16,6 +17,7 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: ColorScheme.dark(
+    inverseSurface: Colors.grey.shade200,
     surface: Colors.grey.shade900,
     primary: primaryColor,
   ),

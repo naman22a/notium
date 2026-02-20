@@ -39,13 +39,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.inverseSurface,
                   ),
                 ),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Dark Mode'),
+                    Text(
+                      'Dark Mode',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                     Switch(
                       overlayColor: overlayColor,
                       trackColor: trackColor,
@@ -61,7 +67,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Font Size'),
+                    Text(
+                      'Font Size',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                     SizedBox(
                       width: 300.0,
                       child: SegmentedButton<FontSize>(
@@ -120,19 +131,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.inverseSurface,
                   ),
                 ),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Enable App Lock'),
+                    Text(
+                      'Enable App Lock',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                     Row(
                       children: [
                         OutlinedButton(
                           style: ButtonStyle(
-                            foregroundColor:
-                                WidgetStatePropertyAll(primaryColor),
+                            foregroundColor: WidgetStatePropertyAll(
+                              Provider.of<ThemeProvider>(context).isDarkMode
+                                  ? Theme.of(context).colorScheme.inverseSurface
+                                  : Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                           onPressed: () {},
                           child: Text(
@@ -146,8 +166,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         SizedBox(width: 10.0),
                         OutlinedButton(
                           style: ButtonStyle(
-                            foregroundColor:
-                                WidgetStatePropertyAll(primaryColor),
+                            foregroundColor: WidgetStatePropertyAll(
+                              Provider.of<ThemeProvider>(context).isDarkMode
+                                  ? Theme.of(context).colorScheme.inverseSurface
+                                  : Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                           onPressed: () {},
                           child: Text(
@@ -162,7 +185,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
-                Text('Auto Lock After'),
+                Text(
+                  'Auto Lock After',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.inverseSurface,
+                  ),
+                ),
                 RadioGroup(
                   groupValue: _autoLock,
                   onChanged: (AutoLock? value) {
@@ -209,7 +237,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     OutlinedButton(
                       style: ButtonStyle(
-                        foregroundColor: WidgetStatePropertyAll(primaryColor),
+                        foregroundColor: WidgetStatePropertyAll(
+                          Provider.of<ThemeProvider>(context).isDarkMode
+                              ? Theme.of(context).colorScheme.inverseSurface
+                              : Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                       onPressed: () {},
                       child: Row(
@@ -232,7 +264,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SizedBox(width: 10.0),
                     OutlinedButton(
                       style: ButtonStyle(
-                        foregroundColor: WidgetStatePropertyAll(primaryColor),
+                        foregroundColor: WidgetStatePropertyAll(
+                          Provider.of<ThemeProvider>(context).isDarkMode
+                              ? Theme.of(context).colorScheme.inverseSurface
+                              : Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                       onPressed: () {},
                       child: Row(
