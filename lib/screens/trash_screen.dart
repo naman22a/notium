@@ -33,7 +33,7 @@ class TrashScreen extends StatelessWidget {
               itemCount: provider.notes.length,
               itemBuilder: (context, index) {
                 final note = provider.notes[index];
-                return TrashNoteCard(note: note);
+                return TrashNoteCard(note: note, index: index);
               },
             );
           },
