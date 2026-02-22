@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:notium/models/note_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:notium/models/note_model.dart';
 import 'package:notium/screens/note_editing_screen.dart';
 
-class NoteCard extends StatelessWidget {
+class TrashNoteCard extends StatelessWidget {
   final NoteModel note;
 
-  const NoteCard({super.key, required this.note});
+  const TrashNoteCard({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
+      startActionPane: ActionPane(
+        motion: StretchMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) {},
+            icon: Icons.loop,
+            backgroundColor: Colors.green,
+          ),
+        ],
+      ),
       endActionPane: ActionPane(
         motion: StretchMotion(),
         children: [

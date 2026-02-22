@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:notium/screens/home_screen.dart';
-import 'package:notium/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:notium/theme/theme_provider.dart';
+import 'package:notium/providers/notes_provider.dart';
 
 void main() {
   runApp(
@@ -9,6 +11,12 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NotesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TrashNotesProvider(),
         ),
       ],
       child: MyApp(),

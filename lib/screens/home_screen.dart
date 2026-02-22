@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/providers/notes_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
-import 'package:notium/models/note_model.dart';
 import 'package:notium/screens/note_editing_screen.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:notium/widgets/note_card.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,19 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<NoteModel> _notes = [
-    NoteModel(
-      title: 'First Note',
-      content:
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
-    ),
-    NoteModel(
-      title: 'Second Note',
-      content:
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
-    ),
-  ];
-
   Future<void> _handleRefresh() async {
     await Future.delayed(Duration(seconds: 1));
   }
@@ -44,23 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
         animSpeedFactor: 2,
         showChildOpacityTransition: false,
         child: ListView.builder(
-          itemCount: _notes.length,
+          itemCount: Provider.of<NotesProvider>(context).notes.length,
           itemBuilder: (context, index) {
-            final note = _notes[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (ctx) => NoteEditingScreen(
-                      title: note.title,
-                      content: note.content,
-                    ),
-                  ),
-                );
-              },
-              child: NoteCard(note: note),
-            );
+            final note = Provider.of<NotesProvider>(context).notes[index];
+            return NoteCard(note: note);
           },
         ),
       ),
