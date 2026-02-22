@@ -58,7 +58,8 @@ class NoteCard extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text('${note.content.substring(0, 100)}...'),
+                Text(
+                    '${note.content.substring(0, note.content.length > 100 ? 100 : note.content.length)}...'),
               ],
             ),
           ),
