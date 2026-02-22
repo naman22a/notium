@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class NoteModel {
   String title;
   String content;
-  late Color color;
+  Color color;
 
   NoteModel({
     required this.title,
     required this.content,
-    this.color = Colors.white,
+    required this.color,
   });
 }

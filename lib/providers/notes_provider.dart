@@ -7,11 +7,13 @@ class NotesProvider with ChangeNotifier {
       title: 'First Note',
       content:
           ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
+      color: Colors.deepOrange,
     ),
     NoteModel(
       title: 'Second Note',
       content:
           ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
+      color: Colors.deepPurple,
     ),
   ];
 
@@ -22,8 +24,12 @@ class NotesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addNote(String title, String content) {
-    _notes.add(NoteModel(title: title, content: content));
+  void addNote(String title, String content, {Color? color}) {
+    _notes.add(NoteModel(
+      title: title,
+      content: content,
+      color: color ?? Colors.white,
+    ));
     notifyListeners();
   }
 }

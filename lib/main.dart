@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notium/providers/picked_color_provider.dart';
 import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:notium/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => TrashNotesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PickedColorProvider(),
         ),
       ],
       child: MyApp(),

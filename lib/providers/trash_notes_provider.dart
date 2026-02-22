@@ -7,11 +7,13 @@ class TrashNotesProvider with ChangeNotifier {
       title: 'Third Note',
       content:
           ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
+      color: Colors.cyan,
     ),
     NoteModel(
       title: 'Fourth Note',
       content:
           ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit at erat sagittis tincidunt et ut odio. Mauris eu justo arcu. Morbi suscipit sem velit, vel pulvinar lacus consequat et. Nulla ultricies metus at faucibus maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula erat ac efficitur mollis. Morbi consectetur mollis aliquet. Proin vitae augue lorem.',
+      color: Colors.lightGreen,
     ),
   ];
 
@@ -22,8 +24,9 @@ class TrashNotesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addNoteToTrash(String title, String content) {
-    _notes.add(NoteModel(title: title, content: content));
+  void addNoteToTrash(String title, String content, {Color? color}) {
+    _notes.add(NoteModel(
+        title: title, content: content, color: color ?? Colors.white));
     notifyListeners();
   }
 }

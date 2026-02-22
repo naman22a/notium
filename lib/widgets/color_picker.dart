@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:notium/common/colors.dart';
+import 'package:notium/providers/picked_color_provider.dart';
+import 'package:provider/provider.dart';
 
-class ColorPicker extends StatefulWidget {
-  const ColorPicker({super.key});
+class ColorPicker extends StatelessWidget {
+  ColorPicker({super.key});
 
-  @override
-  State<ColorPicker> createState() => _ColorPickerState();
-}
-
-class _ColorPickerState extends State<ColorPicker> {
-  Color defaultColor = primaryColor;
-  late Color pickedColor;
-
-  List<Color> colors = [
+  final List<Color> colors = [
     Colors.red,
     Colors.green,
     Colors.blue,
@@ -24,12 +17,6 @@ class _ColorPickerState extends State<ColorPicker> {
     Colors.cyan,
     Colors.brown,
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    pickedColor = defaultColor;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +47,7 @@ class _ColorPickerState extends State<ColorPicker> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.pop(context);
-                            setState(() {
-                              pickedColor = color;
-                            });
+                            context.read<PickedColorProvider>().setColor(color);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -81,10 +66,14 @@ class _ColorPickerState extends State<ColorPicker> {
           },
           child: ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(40.0),
-            child: Container(
-              height: 40,
-              width: 40,
-              color: pickedColor,
+            child: Consumer<PickedColorProvider>(
+              builder: (context, provider, child) {
+                return Container(
+                  height: 40,
+                  width: 40,
+                  color: provider.pickedColor,
+                );
+              },
             ),
           ),
         ),

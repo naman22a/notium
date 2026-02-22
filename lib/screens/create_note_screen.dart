@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
 import 'package:notium/providers/notes_provider.dart';
+import 'package:notium/providers/picked_color_provider.dart';
 import 'package:notium/widgets/color_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -44,18 +45,25 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                 ),
               ),
               SizedBox(height: 10.0),
-              OutlinedButton(
-                style: ButtonStyle(
-                  foregroundColor: WidgetStatePropertyAll(primaryColor),
-                  backgroundColor: WidgetStatePropertyAll(Colors.transparent),
-                ),
-                onPressed: () {
-                  context
-                      .read<NotesProvider>()
-                      .addNote(_titleController.text, _contentController.text);
-                  Navigator.pop(context);
+              Consumer<PickedColorProvider>(
+                builder: (context, provider, child) {
+                  return OutlinedButton(
+                    style: ButtonStyle(
+                      foregroundColor: WidgetStatePropertyAll(primaryColor),
+                      backgroundColor:
+                          WidgetStatePropertyAll(Colors.transparent),
+                    ),
+                    onPressed: () {
+                      context.read<NotesProvider>().addNote(
+                            _titleController.text,
+                            _contentController.text,
+                            color: provider.pickedColor,
+                          );
+                      Navigator.pop(context);
+                    },
+                    child: Text('Create'),
+                  );
                 },
-                child: Text('Create'),
               ),
             ],
           ),
