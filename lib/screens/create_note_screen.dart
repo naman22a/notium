@@ -50,7 +50,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                   backgroundColor: WidgetStatePropertyAll(Colors.transparent),
                 ),
                 onPressed: () {
-                  Provider.of<NotesProvider>(context, listen: false)
+                  context
+                      .read<NotesProvider>()
                       .addNote(_titleController.text, _contentController.text);
                   Navigator.pop(context);
                 },

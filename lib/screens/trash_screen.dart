@@ -27,11 +27,15 @@ class TrashScreen extends StatelessWidget {
         height: 50.0,
         animSpeedFactor: 2,
         showChildOpacityTransition: false,
-        child: ListView.builder(
-          itemCount: Provider.of<TrashNotesProvider>(context).notes.length,
-          itemBuilder: (context, index) {
-            final note = Provider.of<TrashNotesProvider>(context).notes[index];
-            return TrashNoteCard(note: note);
+        child: Consumer<TrashNotesProvider>(
+          builder: (context, provider, child) {
+            return ListView.builder(
+              itemCount: provider.notes.length,
+              itemBuilder: (context, index) {
+                final note = provider.notes[index];
+                return TrashNoteCard(note: note);
+              },
+            );
           },
         ),
       ),

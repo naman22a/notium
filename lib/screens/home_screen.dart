@@ -8,22 +8,15 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:notium/widgets/note_card.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   Future<void> _handleRefresh() async {
     await Future.delayed(Duration(seconds: 1));
   }
 
   @override
   Widget build(BuildContext context) {
-    final notesProvider = Provider.of<NotesProvider>(context);
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: MyAppBar(),
@@ -33,11 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 50.0,
         animSpeedFactor: 2,
         showChildOpacityTransition: false,
-        child: ListView.builder(
-          itemCount: notesProvider.notes.length,
-          itemBuilder: (context, index) {
-            final note = notesProvider.notes[index];
-            return NoteCard(note: note);
+        child: Consumer<NotesProvider>(
+          builder: (context, provider, child) {
+            return ListView.builder(
+              itemCount: provider.notes.length,
+              itemBuilder: (context, index) {
+                final note = provider.notes[index];
+                return NoteCard(note: note);
+              },
+            );
           },
         ),
       ),
