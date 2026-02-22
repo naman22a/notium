@@ -32,4 +32,9 @@ class NotesProvider with ChangeNotifier {
     ));
     notifyListeners();
   }
+
+  void deleteNote(int index) {
+    _notes.removeAt(index);
+    notifyListeners();
+  }
 }

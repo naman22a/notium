@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               itemCount: provider.notes.length,
               itemBuilder: (context, index) {
                 final note = provider.notes[index];
-                return NoteCard(note: note);
+                return NoteCard(note: note, index: index);
               },
             );
           },

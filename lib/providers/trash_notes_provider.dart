@@ -26,7 +26,10 @@ class TrashNotesProvider with ChangeNotifier {
 
   void addNoteToTrash(String title, String content, {Color? color}) {
     _notes.add(NoteModel(
-        title: title, content: content, color: color ?? Colors.white));
+      title: title,
+      content: content,
+      color: color ?? Colors.white,
+    ));
     notifyListeners();
   }
 }
