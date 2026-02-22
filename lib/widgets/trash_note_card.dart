@@ -3,7 +3,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:notium/models/note_model.dart';
 import 'package:notium/providers/notes_provider.dart';
 import 'package:notium/providers/trash_notes_provider.dart';
-import 'package:notium/screens/note_editing_screen.dart';
 import 'package:provider/provider.dart';
 
 class TrashNoteCard extends StatelessWidget {
