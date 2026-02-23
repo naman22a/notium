@@ -4,11 +4,9 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:notium/common/boxes.dart';
 import 'package:notium/common/colors.dart';
 import 'package:notium/models/note_model.dart';
-import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 import 'package:notium/widgets/trash_note_card.dart';
-import 'package:provider/provider.dart';
 
 class TrashScreen extends StatelessWidget {
   const TrashScreen({super.key});
