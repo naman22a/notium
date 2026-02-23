@@ -83,12 +83,12 @@ flutter run
 
 ## 🛠 Roadmap
 
-- [] Auto-lock support
-- [] Export notes (PDF / TXT / JSON)
-- [] Search inside notes
-- [] Markdown support
-- [] Rich text editor
-- [] Tags & folders
+- [ ] Auto-lock support
+- [ ] Export notes (PDF / TXT / JSON)
+- [ ] Search inside notes
+- [ ] Markdown support
+- [ ] Rich text editor
+- [ ] Tags & folders
 
 ## 🤝 Contributions
 
