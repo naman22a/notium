@@ -36,10 +36,7 @@ class NoteCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (ctx) => NoteEditingScreen(
-                title: note.title,
-                content: note.content,
-              ),
+              builder: (ctx) => NoteEditingScreen(note: note),
             ),
           );
         },

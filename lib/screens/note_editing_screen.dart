@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:notium/providers/picked_color_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/models/note_model.dart';
 import 'package:notium/widgets/color_picker.dart';
 
 class NoteEditingScreen extends StatefulWidget {
+  final NoteModel note;
+
   const NoteEditingScreen({
     super.key,
-    required this.title,
-    required this.content,
+    required this.note,
   });
-
-  final String title;
-  final String content;
 
   @override
   State<NoteEditingScreen> createState() => _NoteEditingScreenState();
@@ -23,8 +24,8 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.title);
-    _contentController = TextEditingController(text: widget.content);
+    _titleController = TextEditingController(text: widget.note.title);
+    _contentController = TextEditingController(text: widget.note.content);
   }
 
   @override
@@ -56,15 +57,24 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
                 ),
               ),
               SizedBox(height: 10.0),
-              OutlinedButton(
-                style: ButtonStyle(
-                  foregroundColor: WidgetStatePropertyAll(primaryColor),
-                  backgroundColor: WidgetStatePropertyAll(Colors.transparent),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
+              Consumer<PickedColorProvider>(
+                builder: (context, provider, _) {
+                  return OutlinedButton(
+                    style: ButtonStyle(
+                      foregroundColor: WidgetStatePropertyAll(primaryColor),
+                      backgroundColor:
+                          WidgetStatePropertyAll(Colors.transparent),
+                    ),
+                    onPressed: () {
+                      widget.note.title = _titleController.text;
+                      widget.note.content = _contentController.text;
+                      widget.note.color = provider.pickedColor;
+                      widget.note.save();
+                      Navigator.pop(context);
+                    },
+                    child: Text('Save'),
+                  );
                 },
-                child: Text('Save'),
               ),
             ],
           ),
