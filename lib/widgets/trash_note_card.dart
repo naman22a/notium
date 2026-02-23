@@ -35,7 +35,23 @@ class TrashNoteCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) {
-              note.delete();
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Delete Note'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Approve'),
+                        onPressed: () {
+                          note.delete();
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             icon: Icons.delete,
             backgroundColor: Colors.red,
