@@ -17,7 +17,7 @@ class FontProvider with ChangeNotifier {
       case AppFontSize.medium:
         return 1.0;
       case AppFontSize.large:
-        return 1.2;
+        return 1.1;
     }
   }
 
