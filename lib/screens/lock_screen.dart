@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:notium/providers/app_lock_provider.dart';
 import 'package:notium/screens/home_screen.dart';
 import 'package:notium/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});
@@ -11,6 +13,12 @@ class LockScreen extends StatefulWidget {
 
 class _LockScreenState extends State<LockScreen> {
   Future<void> authInit() async {
+    if (!context.read<AppLockProvider>().isAppLocked) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
+      return;
+    }
+
     bool check = await AuthService().authenticate();
     if (check) {
       Navigator.push(
@@ -21,7 +29,9 @@ class _LockScreenState extends State<LockScreen> {
   @override
   void initState() {
     super.initState();
-    authInit();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      authInit();
+    });
   }
 
   @override

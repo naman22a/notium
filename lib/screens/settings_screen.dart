@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
 import 'package:notium/common/constants.dart';
+import 'package:notium/providers/app_lock_provider.dart';
 import 'package:notium/providers/font_provider.dart';
 import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
@@ -144,47 +145,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: Theme.of(context).colorScheme.inverseSurface,
                       ),
                     ),
-                    Row(
-                      children: [
-                        OutlinedButton(
-                          style: ButtonStyle(
-                            foregroundColor: WidgetStatePropertyAll(
-                              Provider.of<ThemeProvider>(context).isDarkMode
-                                  ? Theme.of(context).colorScheme.inverseSurface
-                                  : Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Biometric',
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0),
-                        OutlinedButton(
-                          style: ButtonStyle(
-                            foregroundColor: WidgetStatePropertyAll(
-                              Provider.of<ThemeProvider>(context).isDarkMode
-                                  ? Theme.of(context).colorScheme.inverseSurface
-                                  : Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'PIN',
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    Switch(
+                      overlayColor: overlayColor,
+                      trackColor: trackColor,
+                      value: Provider.of<AppLockProvider>(context).isAppLocked,
+                      onChanged: (bool value) {
+                        Provider.of<AppLockProvider>(context, listen: false)
+                            .toggleLock();
+                      },
+                    )
                   ],
                 ),
+                SizedBox(height: 10.0),
                 Text(
                   'Auto Lock After',
                   style: TextStyle(
