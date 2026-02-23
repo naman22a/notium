@@ -13,8 +13,10 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
+  Hive.registerAdapter(TrashNoteModelAdapter());
   Hive.registerAdapter(ColorAdapter());
   await Hive.openBox<NoteModel>('notes');
+  await Hive.openBox<TrashNoteModel>('trash');
 
   runApp(
     MultiProvider(

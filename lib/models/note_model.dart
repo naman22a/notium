@@ -20,3 +20,21 @@ class NoteModel extends HiveObject {
     required this.color,
   });
 }
+
+@HiveType(typeId: 1)
+class TrashNoteModel extends HiveObject {
+  @HiveField(0)
+  String title;
+
+  @HiveField(1)
+  String content;
+
+  @HiveField(2)
+  Color color;
+
+  TrashNoteModel({
+    required this.title,
+    required this.content,
+    required this.color,
+  });
+}
