@@ -42,13 +42,29 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: Boxes.getNotes().listenable(),
           builder: (context, box, _) {
             final notes = box.values.toList();
-            return ListView.builder(
-              itemCount: notes.length,
-              itemBuilder: (context, index) {
-                final note = notes[index];
-                return NoteCard(note: note, index: index);
-              },
-            );
+            return notes.length > 0
+                ? ListView.builder(
+                    itemCount: notes.length,
+                    itemBuilder: (context, index) {
+                      final note = notes[index];
+                      return NoteCard(note: note, index: index);
+                    },
+                  )
+                : Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/empty.png'),
+                        Text(
+                          'No data',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
           },
         ),
       ),

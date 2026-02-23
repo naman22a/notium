@@ -32,13 +32,33 @@ class TrashScreen extends StatelessWidget {
           valueListenable: Boxes.getTrash().listenable(),
           builder: (context, box, _) {
             final notes = box.values.toList();
-            return ListView.builder(
-              itemCount: notes.length,
-              itemBuilder: (context, index) {
-                final note = notes[index];
-                return TrashNoteCard(note: note, index: index);
-              },
-            );
+            return notes.length > 0
+                ? ListView.builder(
+                    itemCount: notes.length,
+                    itemBuilder: (context, index) {
+                      final note = notes[index];
+                      return TrashNoteCard(note: note, index: index);
+                    },
+                  )
+                : Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/void.png',
+                          height: 350,
+                          width: 350,
+                        ),
+                        Text(
+                          'Trash is Empty',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
           },
         ),
       ),
