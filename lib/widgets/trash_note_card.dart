@@ -39,7 +39,12 @@ class TrashNoteCard extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: const Text('Delete Note'),
+                    title: Text(
+                      'Delete Note',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                     actions: <Widget>[
                       TextButton(
                         child: const Text('Approve'),

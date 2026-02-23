@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notium/common/boxes.dart';
 import 'package:notium/common/colors.dart';
 import 'package:notium/common/constants.dart';
 import 'package:notium/providers/app_lock_provider.dart';
@@ -266,7 +267,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         foregroundColor: WidgetStatePropertyAll(Colors.white),
                         backgroundColor: WidgetStatePropertyAll(Colors.red),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(
+                                'Delete Everything',
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inverseSurface,
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text(
+                                    'Approve',
+                                  ),
+                                  onPressed: () async {
+                                    Boxes.getNotes().clear();
+                                    Boxes.getTrash().clear();
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: Row(
                         children: [
                           Icon(
