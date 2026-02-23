@@ -81,7 +81,7 @@ flutter pub get
 flutter run
 ```
 
-## 🛠 Roadmap
+## 🛠 Todos
 
 - [ ] Auto-lock support
 - [ ] Export notes (PDF / TXT / JSON)
