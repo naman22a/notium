@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:notium/common/boxes.dart';
 import 'package:notium/models/note_model.dart';
-import 'package:notium/providers/notes_provider.dart';
 import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +19,12 @@ class TrashNoteCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) {
-              context
-                  .read<NotesProvider>()
-                  .addNote(note.title, note.content, color: note.color);
+              final box = Boxes.getNotes();
+              box.add(NoteModel(
+                title: note.title,
+                content: note.content,
+                color: note.color,
+              ));
               context.read<TrashNotesProvider>().deleteNote(index);
             },
             icon: Icons.loop,

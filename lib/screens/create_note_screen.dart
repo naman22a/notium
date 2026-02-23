@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:notium/common/boxes.dart';
 import 'package:notium/common/colors.dart';
-import 'package:notium/providers/notes_provider.dart';
+import 'package:notium/models/note_model.dart';
 import 'package:notium/providers/picked_color_provider.dart';
 import 'package:notium/widgets/color_picker.dart';
 import 'package:provider/provider.dart';
@@ -54,11 +55,12 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                           WidgetStatePropertyAll(Colors.transparent),
                     ),
                     onPressed: () {
-                      context.read<NotesProvider>().addNote(
-                            _titleController.text,
-                            _contentController.text,
-                            color: provider.pickedColor,
-                          );
+                      final box = Boxes.getNotes();
+                      box.add(NoteModel(
+                          title: _titleController.text,
+                          content: _contentController.text,
+                          color: provider.pickedColor));
+
                       Navigator.pop(context);
                     },
                     child: Text('Create'),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notium/models/note_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:notium/providers/notes_provider.dart';
 import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:notium/screens/note_editing_screen.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,7 @@ class NoteCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (ctx) {
-              context.read<NotesProvider>().deleteNote(index);
+              note.delete();
               context
                   .read<TrashNotesProvider>()
                   .addNoteToTrash(note.title, note.content, color: note.color);

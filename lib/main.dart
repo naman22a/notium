@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:notium/models/note_model.dart';
 import 'package:notium/providers/picked_color_provider.dart';
 import 'package:notium/providers/trash_notes_provider.dart';
 import 'package:notium/screens/home_screen.dart';
@@ -6,7 +8,14 @@ import 'package:provider/provider.dart';
 import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/providers/notes_provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(NoteModelAdapter());
+  Hive.registerAdapter(ColorAdapter());
+  await Hive.openBox<NoteModel>('notes');
+
   runApp(
     MultiProvider(
       providers: [
