@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: Boxes.getNotes().listenable(),
           builder: (context, box, _) {
             final notes = box.values.toList();
-            return notes.length > 0
+            return notes.isNotEmpty
                 ? ListView.builder(
                     itemCount: notes.length,
                     itemBuilder: (context, index) {

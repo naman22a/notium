@@ -32,7 +32,7 @@ class TrashScreen extends StatelessWidget {
           valueListenable: Boxes.getTrash().listenable(),
           builder: (context, box, _) {
             final notes = box.values.toList();
-            return notes.length > 0
+            return notes.isNotEmpty
                 ? ListView.builder(
                     itemCount: notes.length,
                     itemBuilder: (context, index) {
