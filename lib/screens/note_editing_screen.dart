@@ -44,6 +44,9 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
               ),
               SizedBox(height: 10.0),
               ColorPicker(),
@@ -54,6 +57,9 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
                 maxLines: null,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
+                ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
                 ),
               ),
               SizedBox(height: 10.0),
@@ -72,7 +78,12 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
                       widget.note.save();
                       Navigator.pop(context);
                     },
-                    child: Text('Save'),
+                    child: Text(
+                      'Save',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                   );
                 },
               ),

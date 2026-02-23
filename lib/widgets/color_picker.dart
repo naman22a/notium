@@ -22,14 +22,25 @@ class ColorPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Pick Color'),
+        Text(
+          'Pick Color',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.inverseSurface,
+          ),
+        ),
+        SizedBox(height: 10.0),
         GestureDetector(
           onTap: () {
             showDialog(
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Select Color"),
+                  title: Text(
+                    "Select Color",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inverseSurface,
+                    ),
+                  ),
                   content: SizedBox(
                     width: 300,
                     child: GridView.builder(

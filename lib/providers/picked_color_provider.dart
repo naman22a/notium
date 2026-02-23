@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PickedColorProvider with ChangeNotifier {
-  Color _pickedColor = Colors.white;
+  Color _pickedColor = Colors.purple;
 
   Color get pickedColor => _pickedColor;
 

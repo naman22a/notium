@@ -6,6 +6,7 @@ import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum AutoLock { thirtySeconds, oneMinute, fiveMinutes }
 
@@ -342,13 +343,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ],
                   ),
                 ),
-                ListTile(
-                  title: Text('Privacy Policy'),
-                  leading: Icon(Icons.privacy_tip),
+                GestureDetector(
+                  onTap: () async {
+                    final Uri url = Uri.parse('https://notium.namanarora.xyz');
+
+                    if (!await launchUrl(url)) {
+                      throw Exception('Could not launch $url');
+                    }
+                  },
+                  child: ListTile(
+                    title: Text('Privacy Policy'),
+                    leading: Icon(Icons.privacy_tip),
+                  ),
                 ),
-                ListTile(
-                  title: Text('Contact'),
-                  leading: Icon(Icons.contact_phone),
+                GestureDetector(
+                  onTap: () async {
+                    final Uri url = Uri(
+                      scheme: 'mailto',
+                      path: '00517711623_ml@vipstc.edu.in',
+                      query:
+                          'subject=Contact%20Support&body=Hello%20Notium%20Team,',
+                    );
+
+                    if (!await launchUrl(url)) {
+                      throw Exception('Could not launch $url');
+                    }
+                  },
+                  child: ListTile(
+                    title: Text('Contact'),
+                    leading: Icon(Icons.contact_phone),
+                  ),
                 ),
               ],
             ),

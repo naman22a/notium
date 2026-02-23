@@ -27,22 +27,38 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Title'),
+              Text(
+                'Title',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
+              ),
               TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
               ),
               SizedBox(height: 10.0),
               ColorPicker(),
               SizedBox(height: 10.0),
-              Text('Content'),
+              Text(
+                'Content',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
+              ),
               TextField(
                 controller: _contentController,
                 maxLines: null,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
+                ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
                 ),
               ),
               SizedBox(height: 10.0),
@@ -57,13 +73,19 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     onPressed: () {
                       final box = Boxes.getNotes();
                       box.add(NoteModel(
-                          title: _titleController.text,
-                          content: _contentController.text,
-                          color: provider.pickedColor));
+                        title: _titleController.text,
+                        content: _contentController.text,
+                        color: provider.pickedColor,
+                      ));
 
                       Navigator.pop(context);
                     },
-                    child: Text('Create'),
+                    child: Text(
+                      'Create',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
                   );
                 },
               ),
