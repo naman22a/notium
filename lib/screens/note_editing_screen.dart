@@ -38,7 +38,12 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Title'),
+              Text(
+                'Title',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
+              ),
               TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
@@ -51,7 +56,12 @@ class _NoteEditingScreenState extends State<NoteEditingScreen> {
               SizedBox(height: 10.0),
               ColorPicker(),
               SizedBox(height: 10.0),
-              Text('Content'),
+              Text(
+                'Content',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                ),
+              ),
               TextField(
                 controller: _contentController,
                 maxLines: null,
