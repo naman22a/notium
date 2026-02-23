@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-class NoteModel {
+part 'note_model.g.dart';
+
+@HiveType(typeId: 0)
+class NoteModel extends HiveObject {
+  @HiveField(0)
   String title;
+
+  @HiveField(1)
   String content;
+
+  @HiveField(2)
   Color color;
 
   NoteModel({
+    required this.title,
+    required this.content,
+    required this.color,
+  });
+}
+
+@HiveType(typeId: 1)
+class TrashNoteModel extends HiveObject {
+  @HiveField(0)
+  String title;
+
+  @HiveField(1)
+  String content;
+
+  @HiveField(2)
+  Color color;
+
+  TrashNoteModel({
     required this.title,
     required this.content,
     required this.color,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:notium/common/colors.dart';
+import 'package:notium/common/constants.dart';
+import 'package:notium/providers/font_provider.dart';
 import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
 import 'package:provider/provider.dart';
-
-enum FontSize { small, medium, large }
 
 enum AutoLock { thirtySeconds, oneMinute, fiveMinutes }
 
@@ -17,11 +17,12 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  FontSize fontSizeView = FontSize.medium;
   AutoLock? _autoLock = AutoLock.oneMinute;
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<FontProvider>();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: MyAppBar(
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     SizedBox(
                       width: 300.0,
-                      child: SegmentedButton<FontSize>(
+                      child: SegmentedButton<AppFontSize>(
                         style: SegmentedButton.styleFrom(
                           backgroundColor:
                               Theme.of(context).colorScheme.surface,
@@ -86,9 +87,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           visualDensity:
                               VisualDensity(horizontal: -2, vertical: -2),
                         ),
-                        segments: const <ButtonSegment<FontSize>>[
-                          ButtonSegment<FontSize>(
-                            value: FontSize.small,
+                        segments: const <ButtonSegment<AppFontSize>>[
+                          ButtonSegment<AppFontSize>(
+                            value: AppFontSize.small,
                             label: Text(
                               'Small',
                               style: TextStyle(
@@ -96,8 +97,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                             ),
                           ),
-                          ButtonSegment<FontSize>(
-                            value: FontSize.medium,
+                          ButtonSegment<AppFontSize>(
+                            value: AppFontSize.medium,
                             label: Text(
                               'Medium',
                               style: TextStyle(
@@ -105,8 +106,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                             ),
                           ),
-                          ButtonSegment<FontSize>(
-                            value: FontSize.large,
+                          ButtonSegment<AppFontSize>(
+                            value: AppFontSize.large,
                             label: Text(
                               'Large',
                               style: TextStyle(
@@ -115,11 +116,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ),
                           ),
                         ],
-                        selected: <FontSize>{fontSizeView},
-                        onSelectionChanged: (Set<FontSize> newSelection) {
-                          setState(() {
-                            fontSizeView = newSelection.first;
-                          });
+                        selected: <AppFontSize>{provider.size},
+                        onSelectionChanged: (Set<AppFontSize> newSelection) {
+                          provider.setSize(newSelection.first);
                         },
                       ),
                     ),

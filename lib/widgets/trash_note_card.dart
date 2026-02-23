@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:notium/common/boxes.dart';
 import 'package:notium/models/note_model.dart';
-import 'package:notium/providers/notes_provider.dart';
-import 'package:notium/providers/trash_notes_provider.dart';
-import 'package:provider/provider.dart';
 
 class TrashNoteCard extends StatelessWidget {
-  final NoteModel note;
+  final TrashNoteModel note;
   final int index;
 
   const TrashNoteCard({super.key, required this.note, required this.index});
@@ -19,10 +17,13 @@ class TrashNoteCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) {
-              context
-                  .read<NotesProvider>()
-                  .addNote(note.title, note.content, color: note.color);
-              context.read<TrashNotesProvider>().deleteNote(index);
+              final box = Boxes.getNotes();
+              box.add(NoteModel(
+                title: note.title,
+                content: note.content,
+                color: note.color,
+              ));
+              note.delete();
             },
             icon: Icons.loop,
             backgroundColor: Colors.green,
@@ -34,7 +35,23 @@ class TrashNoteCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) {
-              context.read<TrashNotesProvider>().deleteNote(index);
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Delete Note'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Approve'),
+                        onPressed: () {
+                          note.delete();
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             icon: Icons.delete,
             backgroundColor: Colors.red,
