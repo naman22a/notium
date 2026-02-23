@@ -58,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           'No data',
                           style: TextStyle(
+                            color: Theme.of(context).colorScheme.inverseSurface,
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
                           ),

@@ -52,6 +52,7 @@ class TrashScreen extends StatelessWidget {
                         Text(
                           'Trash is Empty',
                           style: TextStyle(
+                            color: Theme.of(context).colorScheme.inverseSurface,
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
                           ),
