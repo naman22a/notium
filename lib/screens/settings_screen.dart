@@ -10,8 +10,6 @@ import 'package:notium/widgets/my_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum AutoLock { thirtySeconds, oneMinute, fiveMinutes }
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -20,8 +18,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  AutoLock? _autoLock = AutoLock.oneMinute;
-
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<FontProvider>();
@@ -156,46 +152,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     )
                   ],
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  'Auto Lock After',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inverseSurface,
-                  ),
-                ),
-                RadioGroup(
-                  groupValue: _autoLock,
-                  onChanged: (AutoLock? value) {
-                    setState(() {
-                      _autoLock = value;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: const Text('30 Secs'),
-                        leading: Radio<AutoLock>(
-                          value: AutoLock.thirtySeconds,
-                          fillColor: WidgetStatePropertyAll(primaryColor),
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('1 Minute'),
-                        leading: Radio<AutoLock>(
-                          value: AutoLock.oneMinute,
-                          fillColor: WidgetStatePropertyAll(primaryColor),
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('5 Minutes'),
-                        leading: Radio<AutoLock>(
-                          value: AutoLock.fiveMinutes,
-                          fillColor: WidgetStatePropertyAll(primaryColor),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
                 SizedBox(height: 10.0),
                 Text(
