@@ -4,6 +4,8 @@ import 'package:notium/common/colors.dart';
 import 'package:notium/common/constants.dart';
 import 'package:notium/providers/app_lock_provider.dart';
 import 'package:notium/providers/font_provider.dart';
+import 'package:notium/services/export_service.dart';
+import 'package:notium/services/import_service.dart';
 import 'package:notium/theme/theme_provider.dart';
 import 'package:notium/widgets/my_appbar.dart';
 import 'package:notium/widgets/my_drawer.dart';
@@ -18,6 +20,26 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  Future<void> handleExport() async {
+    String filePath = await exportAllNotes();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Notes Exported to $filePath'),
+      ),
+    );
+  }
+
+  Future<void> handleImport() async {
+    await importAllNotes();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Notes Imported'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<FontProvider>();
@@ -172,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               : Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: handleImport,
                       child: Row(
                         children: [
                           Icon(
@@ -199,7 +221,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               : Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: handleExport,
                       child: Row(
                         children: [
                           Icon(

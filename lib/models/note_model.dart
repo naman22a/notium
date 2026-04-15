@@ -19,6 +19,20 @@ class NoteModel extends HiveObject {
     required this.content,
     required this.color,
   });
+
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "content": content,
+        "color": color.value,
+      };
+
+  factory NoteModel.fromJson(Map<String, dynamic> json) {
+    return NoteModel(
+      title: json["title"],
+      content: json["content"],
+      color: Color(json["color"]),
+    );
+  }
 }
 
 @HiveType(typeId: 1)
@@ -37,4 +51,18 @@ class TrashNoteModel extends HiveObject {
     required this.content,
     required this.color,
   });
+
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "content": content,
+        "color": color.value,
+      };
+
+  factory TrashNoteModel.fromJson(Map<String, dynamic> json) {
+    return TrashNoteModel(
+      title: json["title"],
+      content: json["content"],
+      color: Color(json["color"]),
+    );
+  }
 }
